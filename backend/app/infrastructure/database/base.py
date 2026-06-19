@@ -10,12 +10,22 @@ DATABASE_URL = settings.DATABASE_URL.replace(
     "postgresql://", "postgresql+asyncpg://"
 ).replace("postgres://", "postgresql+asyncpg://")
 
+# Conditionally configure connection pool depending on DB dialect
+engine_kwargs = {
+    "pool_pre_ping": True,
+    "echo": settings.DEBUG,
+}
+
+if "sqlite" not in DATABASE_URL:
+    engine_kwargs["pool_size"] = 10
+    engine_kwargs["max_overflow"] = 20
+else:
+    # SQLite requires check_same_thread=False for async/multithreaded access
+    engine_kwargs["connect_args"] = {"check_same_thread": False}
+
 engine = create_async_engine(
     DATABASE_URL,
-    pool_pre_ping=True,
-    pool_size=10,
-    max_overflow=20,
-    echo=settings.DEBUG,
+    **engine_kwargs
 )
 
 AsyncSessionLocal = async_sessionmaker(

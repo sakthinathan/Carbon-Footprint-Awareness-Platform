@@ -50,15 +50,18 @@ async def get_emission_summary(
     this_month_start = now.replace(day=1, hour=0, minute=0, second=0)
     last_month_start = (this_month_start - timedelta(days=1)).replace(day=1)
 
-    # Total per scope
-    scope_totals = {}
-    for scope in EmissionScope:
-        result = await db.execute(
-            select(func.coalesce(func.sum(EmissionModel.co2_equivalent_kg), 0.0))
-            .where(EmissionModel.user_id == current_user.firebase_uid)
-            .where(EmissionModel.scope == scope)
+    # Total per scope (optimized to a single database hit)
+    scope_totals = {scope.value: 0.0 for scope in EmissionScope}
+    scope_results = await db.execute(
+        select(
+            EmissionModel.scope,
+            func.coalesce(func.sum(EmissionModel.co2_equivalent_kg), 0.0)
         )
-        scope_totals[scope.value] = result.scalar() or 0.0
+        .where(EmissionModel.user_id == current_user.firebase_uid)
+        .group_by(EmissionModel.scope)
+    )
+    for row in scope_results.all():
+        scope_totals[row[0]] = row[1]
 
     total_kg = sum(scope_totals.values())
 

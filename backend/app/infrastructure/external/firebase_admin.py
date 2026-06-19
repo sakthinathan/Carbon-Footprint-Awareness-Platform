@@ -35,7 +35,8 @@ def init_firebase() -> None:
         log.info("Firebase Admin SDK initialized", project=settings.FIREBASE_PROJECT_ID)
     except Exception as e:
         log.error("Failed to initialize Firebase Admin SDK", error=str(e))
-        raise
+        if settings.ENVIRONMENT == "production":
+            raise
 
 
 def verify_firebase_token(id_token: str) -> dict:

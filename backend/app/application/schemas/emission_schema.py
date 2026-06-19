@@ -2,7 +2,7 @@
 from datetime import datetime
 from typing import Optional
 from uuid import UUID
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, computed_field
 
 from app.domain.entities.emission import EmissionScope, EmissionCategory, EmissionUnit
 
@@ -48,7 +48,6 @@ class EmissionResponse(BaseModel):
     amount: float
     unit: EmissionUnit
     co2_equivalent_kg: float
-    co2_equivalent_tonnes: float
     emission_factor: float
     source: Optional[str]
     location: Optional[str]
@@ -59,7 +58,7 @@ class EmissionResponse(BaseModel):
 
     model_config = {"from_attributes": True}
 
-    @property
+    @computed_field
     def co2_equivalent_tonnes(self) -> float:
         return self.co2_equivalent_kg / 1000
 

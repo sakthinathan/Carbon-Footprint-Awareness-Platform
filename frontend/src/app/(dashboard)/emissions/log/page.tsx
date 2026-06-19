@@ -84,10 +84,11 @@ export default function LogEmissionPage() {
           <h3 className="text-sm font-semibold" style={{ color: "#4ade80" }}>Basic Information</h3>
 
           <div>
-            <label className="block text-xs font-medium mb-1.5" style={{ color: "rgba(134,239,172,0.7)" }}>
+            <label htmlFor="emission-title" className="block text-xs font-medium mb-1.5" style={{ color: "rgba(134,239,172,0.7)" }}>
               Title *
             </label>
             <input
+              id="emission-title"
               className="eco-input"
               placeholder="e.g. Office electricity — June 2025"
               value={form.title}
@@ -97,10 +98,11 @@ export default function LogEmissionPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-medium mb-1.5" style={{ color: "rgba(134,239,172,0.7)" }}>
+            <label htmlFor="emission-description" className="block text-xs font-medium mb-1.5" style={{ color: "rgba(134,239,172,0.7)" }}>
               Description
             </label>
             <textarea
+              id="emission-description"
               className="eco-input resize-none"
               rows={2}
               placeholder="Additional context..."
@@ -137,10 +139,11 @@ export default function LogEmissionPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-medium mb-1.5" style={{ color: "rgba(134,239,172,0.7)" }}>
+            <label htmlFor="emission-category" className="block text-xs font-medium mb-1.5" style={{ color: "rgba(134,239,172,0.7)" }}>
               Category *
             </label>
             <select
+              id="emission-category"
               className="eco-input"
               value={form.category}
               onChange={(e) => set("category", e.target.value)}
@@ -169,10 +172,11 @@ export default function LogEmissionPage() {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium mb-1.5" style={{ color: "rgba(134,239,172,0.7)" }}>
+              <label htmlFor="emission-amount" className="block text-xs font-medium mb-1.5" style={{ color: "rgba(134,239,172,0.7)" }}>
                 Amount *
               </label>
               <input
+                id="emission-amount"
                 className="eco-input font-mono"
                 type="number"
                 step="any"
@@ -184,10 +188,11 @@ export default function LogEmissionPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-medium mb-1.5" style={{ color: "rgba(134,239,172,0.7)" }}>
+              <label htmlFor="emission-unit" className="block text-xs font-medium mb-1.5" style={{ color: "rgba(134,239,172,0.7)" }}>
                 Unit *
               </label>
               <select
+                id="emission-unit"
                 className="eco-input"
                 value={form.unit}
                 onChange={(e) => set("unit", e.target.value)}
@@ -201,10 +206,11 @@ export default function LogEmissionPage() {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium mb-1.5" style={{ color: "rgba(134,239,172,0.7)" }}>
+              <label htmlFor="emission-source" className="block text-xs font-medium mb-1.5" style={{ color: "rgba(134,239,172,0.7)" }}>
                 Source
               </label>
               <input
+                id="emission-source"
                 className="eco-input"
                 placeholder="e.g. Electricity meter"
                 value={form.source}
@@ -212,10 +218,11 @@ export default function LogEmissionPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-medium mb-1.5" style={{ color: "rgba(134,239,172,0.7)" }}>
+              <label htmlFor="emission-location" className="block text-xs font-medium mb-1.5" style={{ color: "rgba(134,239,172,0.7)" }}>
                 Location
               </label>
               <input
+                id="emission-location"
                 className="eco-input"
                 placeholder="e.g. Mumbai HQ"
                 value={form.location}
@@ -225,10 +232,11 @@ export default function LogEmissionPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-medium mb-1.5" style={{ color: "rgba(134,239,172,0.7)" }}>
+            <label htmlFor="emission-date" className="block text-xs font-medium mb-1.5" style={{ color: "rgba(134,239,172,0.7)" }}>
               Date *
             </label>
             <input
+              id="emission-date"
               className="eco-input"
               type="date"
               value={form.date}

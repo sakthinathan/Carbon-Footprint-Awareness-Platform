@@ -225,7 +225,7 @@ export default function DashboardPage() {
                   <Pie data={scopeBreakdown} cx="50%" cy="50%" innerRadius={45} outerRadius={70} dataKey="value_kg" nameKey="label" paddingAngle={3}>
                     {scopeBreakdown.map((_: any, i: number) => <Cell key={i} fill={SCOPE_COLORS[i % 3]} />)}
                   </Pie>
-                  <Tooltip formatter={(v: number) => [formatCO2e(v), ""]} contentStyle={{ background: "rgba(5,14,5,0.98)", border: "1px solid rgba(22,163,74,0.25)", borderRadius: 12, fontSize: 12 }} />
+                  <Tooltip formatter={(v: any) => [formatCO2e(Number(v)), ""]} contentStyle={{ background: "rgba(5,14,5,0.98)", border: "1px solid rgba(22,163,74,0.25)", borderRadius: 12, fontSize: 12 }} />
                   <Legend iconType="circle" iconSize={7} wrapperStyle={{ fontSize: "0.7rem", color: "rgba(134,239,172,0.5)" }} />
                 </PieChart>
               </ResponsiveContainer>

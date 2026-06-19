@@ -77,7 +77,7 @@ export default function AnalyticsPage() {
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(22,163,74,0.06)" />
             <XAxis dataKey="month" tick={{ fill: "rgba(134,239,172,0.4)", fontSize: 10 }} axisLine={false} tickLine={false} />
             <YAxis tick={{ fill: "rgba(134,239,172,0.4)", fontSize: 10 }} axisLine={false} tickLine={false} />
-            <Tooltip contentStyle={{ background: "rgba(5,14,5,0.98)", border: "1px solid rgba(22,163,74,0.25)", borderRadius: 12, fontSize: 12 }} formatter={(v: number) => [`${v.toLocaleString()} kg`, ""]} />
+            <Tooltip contentStyle={{ background: "rgba(5,14,5,0.98)", border: "1px solid rgba(22,163,74,0.25)", borderRadius: 12, fontSize: 12 }} formatter={(v: any) => [`${Number(v).toLocaleString()} kg`, ""]} />
             <Area type="monotone" dataKey="scope_1_kg" stroke="#16a34a" fill="url(#g1)" strokeWidth={2} name="Scope 1" />
             <Area type="monotone" dataKey="scope_2_kg" stroke="#10b981" fill="url(#g2)" strokeWidth={2} name="Scope 2" />
             <Area type="monotone" dataKey="scope_3_kg" stroke="#a3e635" fill="url(#g3)" strokeWidth={2} name="Scope 3" />
@@ -95,7 +95,7 @@ export default function AnalyticsPage() {
               <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(22,163,74,0.06)" />
               <XAxis type="number" tick={{ fill: "rgba(134,239,172,0.4)", fontSize: 10 }} axisLine={false} tickLine={false} tickFormatter={(v) => `${(v/1000).toFixed(0)}k`} />
               <YAxis dataKey="label" type="category" tick={{ fill: "rgba(134,239,172,0.55)", fontSize: 10 }} width={145} axisLine={false} tickLine={false} />
-              <Tooltip formatter={(v: number) => [formatCO2e(v), "CO₂e"]} contentStyle={{ background: "rgba(5,14,5,0.98)", border: "1px solid rgba(22,163,74,0.25)", borderRadius: 12, fontSize: 12 }} />
+              <Tooltip formatter={(v: any) => [formatCO2e(Number(v)), "CO₂e"]} contentStyle={{ background: "rgba(5,14,5,0.98)", border: "1px solid rgba(22,163,74,0.25)", borderRadius: 12, fontSize: 12 }} />
               <Bar dataKey="total_kg" fill="#16a34a" radius={[0, 6, 6, 0]} name="CO₂e (kg)" />
             </BarChart>
           </ResponsiveContainer>
@@ -109,7 +109,7 @@ export default function AnalyticsPage() {
               <Pie data={scopes || []} cx="50%" cy="50%" innerRadius={50} outerRadius={75} dataKey="value_kg" nameKey="label" paddingAngle={3}>
                 {(scopes || []).map((_: any, i: number) => <Cell key={i} fill={SCOPE_COLORS[i % 3]} />)}
               </Pie>
-              <Tooltip formatter={(v: number) => [formatCO2e(v), ""]} contentStyle={{ background: "rgba(5,14,5,0.98)", border: "1px solid rgba(22,163,74,0.25)", borderRadius: 12, fontSize: 12 }} />
+              <Tooltip formatter={(v: any) => [formatCO2e(Number(v)), ""]} contentStyle={{ background: "rgba(5,14,5,0.98)", border: "1px solid rgba(22,163,74,0.25)", borderRadius: 12, fontSize: 12 }} />
               <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: "0.7rem", color: "rgba(134,239,172,0.5)" }} />
             </PieChart>
           </ResponsiveContainer>

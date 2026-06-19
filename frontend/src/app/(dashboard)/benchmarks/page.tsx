@@ -115,7 +115,7 @@ export default function BenchmarksPage() {
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(22,163,74,0.06)" />
               <XAxis dataKey="name" tick={{ fill: "rgba(134,239,172,0.5)", fontSize: 10 }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fill: "rgba(134,239,172,0.4)", fontSize: 10 }} axisLine={false} tickLine={false} />
-              <Tooltip formatter={(v: number) => [`${v.toFixed(2)} t CO₂e`, ""]} contentStyle={{ background: "rgba(5,14,5,0.98)", border: "1px solid rgba(22,163,74,0.25)", borderRadius: 12, fontSize: 12 }} />
+              <Tooltip formatter={(v: any) => [`${Number(v).toFixed(2)} t CO₂e`, ""]} contentStyle={{ background: "rgba(5,14,5,0.98)", border: "1px solid rgba(22,163,74,0.25)", borderRadius: 12, fontSize: 12 }} />
               <Bar dataKey="value" radius={[6, 6, 0, 0]}>
                 {peerData.map((entry, i) => <Cell key={i} fill={entry.color} />)}
               </Bar>
