@@ -24,7 +24,7 @@ class Settings(BaseSettings):
 
     # Google Gemini AI
     GEMINI_API_KEY: str
-    GEMINI_MODEL: str = "gemini-1.5-pro"
+    GEMINI_MODEL: str = "gemini-1.5-flash"
 
     # Redis
     REDIS_URL: str = "redis://localhost:6379"
