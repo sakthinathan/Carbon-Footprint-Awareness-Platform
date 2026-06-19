@@ -39,6 +39,9 @@ env/
 .env.test.local
 .env.production.local
 .env.workspace
+firebase-key.json
+backend/firebase-key.json
+
 
 # IDEs and OS
 .DS_Store
