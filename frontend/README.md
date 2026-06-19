@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎨 EcoSentinel Frontend
 
-## Getting Started
+A premium, modern React application for carbon footprint monitoring and optimization, built with Next.js 15, TypeScript, Tailwind CSS (v4), and Framer Motion.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Features
+
+*   **🔒 Session-based Authentication**: Full Google and Email Sign-In options integrated via Firebase Authentication.
+*   **📊 Dynamic Carbon Dashboard**: Real-time emission calculations and interactive analytical charts showcasing carbon scope categorizations (Scope 1, 2, 3).
+*   **🍃 Real-time Air Quality & Weather insights**: Connects with live weather parameters and Air Quality Index (AQI) reports with adaptive color alerts.
+*   **🤖 Gemini-powered AI Advisor**: Interactive advisor terminal offering personalized suggestions and real-time generation animations.
+*   **📋 Structured Carbon Logs**: Forms for quickly adding energy, waste, and transport metrics.
+*   **📄 Report Export**: Localized PDF summaries generation using `jspdf` and `jspdf-autotable`.
+
+---
+
+## 📁 Directory Structure
+
+```
+frontend/
+├── public/                 # Static assets (svgs, favicons)
+├── src/
+│   ├── app/                # Next.js App Router (Layouts and Pages)
+│   │   ├── (auth)/         # Authentication flow (Login)
+│   │   └── (dashboard)/    # Core dashboard sub-routes (Dashboard, Log, Analytics, AI Advisor, Environment)
+│   ├── components/         # Reusable layouts, overlays, graphs, and UI modules
+│   ├── hooks/              # Custom query, authorization, and notifications hooks
+│   ├── infrastructure/     # API request clients (Axios configurations) & Firebase configurations
+│   ├── lib/                # Local utilities, testing helpers, and mock datasets
+│   └── types/              # Static TypeScript schema and types
+├── package.json            # Scripts, project metadata, and dependency declarations
+├── tsconfig.json           # TypeScript configuration
+└── tailwind.config.ts      # CSS/Tailwind definitions (custom theme setups)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Make sure dependencies are installed using `npm install` inside the `frontend` folder.
 
-## Learn More
+```bash
+# Run local hot-reload server (starts on http://localhost:3000)
+npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+# Build production bundle
+npm run build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Start production server locally after building
+npm run start
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Run unit and component test suites (using Vitest)
+npx vitest
 
-## Deploy on Vercel
+# Open Vitest visual dashboard
+npx vitest --ui
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ⚙️ Environment Configuration (`.env.local`)
+
+Provide a `.env.local` file inside the `frontend/` directory with the following keys:
+
+```ini
+# FastAPI Backend URL
+NEXT_PUBLIC_API_URL=http://localhost:8000
+
+# Firebase Client configuration keys
+NEXT_PUBLIC_FIREBASE_API_KEY=your-api-key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-auth-domain
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-storage-bucket
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
+NEXT_PUBLIC_FIREBASE_APP_ID=your-app-id
+```
