@@ -1,0 +1,67 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ecosentinel-backend"
+version = "1.0.0"
+description = "EcoSentinel Carbon Footprint Awareness Platform - Backend API"
+requires-python = ">=3.12"
+dependencies = [
+    # Web framework
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    # Database
+    "sqlalchemy>=2.0.36",
+    "alembic>=1.14.0",
+    "psycopg2-binary>=2.9.10",
+    # Authentication
+    "firebase-admin>=6.6.0",
+    "python-jose[cryptography]>=3.3.0",
+    # Validation
+    "pydantic>=2.10.0",
+    "pydantic-settings>=2.6.0",
+    # AI
+    "google-generativeai>=0.8.3",
+    # Caching
+    "redis>=5.2.0",
+    # Rate limiting
+    "slowapi>=0.1.9",
+    # HTTP Client
+    "httpx>=0.28.0",
+    # Email
+    "resend>=2.5.0",
+    # Logging
+    "structlog>=24.4.0",
+    # Error tracking
+    "sentry-sdk[fastapi]>=2.19.0",
+    # CORS + security
+    "python-multipart>=0.0.19",
+    # CSV/Excel export
+    "openpyxl>=3.1.5",
+    "python-dotenv>=1.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+    "pytest-cov>=6.0.0",
+    "httpx>=0.28.0",
+    "mypy>=1.13.0",
+    "ruff>=0.8.0",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
