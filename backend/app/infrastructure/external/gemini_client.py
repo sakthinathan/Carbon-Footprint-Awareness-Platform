@@ -62,7 +62,7 @@ class GeminiAdvisor:
         history = conversation_history or []
 
         try:
-            if not settings.GEMINI_API_KEY or settings.GEMINI_API_KEY == "mock-api-key" or "AIzaSy" not in settings.GEMINI_API_KEY:
+            if not settings.GEMINI_API_KEY or settings.GEMINI_API_KEY == "mock-api-key":
                 raise ValueError("Valid Google Gemini API Key not configured")
 
             chat = self.model.start_chat(history=history)
@@ -142,7 +142,7 @@ Emission Summary:
 Provide specific, prioritized recommendations with estimated impact percentages."""
 
         try:
-            if not settings.GEMINI_API_KEY or settings.GEMINI_API_KEY == "mock-api-key" or "AIzaSy" not in settings.GEMINI_API_KEY:
+            if not settings.GEMINI_API_KEY or settings.GEMINI_API_KEY == "mock-api-key":
                 raise ValueError("Valid Google Gemini API Key not configured")
             response = await self.model.generate_content_async(prompt)
             return response.text
