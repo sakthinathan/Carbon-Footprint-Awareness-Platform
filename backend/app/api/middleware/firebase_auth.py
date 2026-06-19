@@ -10,6 +10,7 @@ from app.infrastructure.external.firebase_admin import verify_firebase_token, in
 from app.infrastructure.database.base import get_db
 from app.infrastructure.database.models.user_model import UserModel
 from app.domain.entities.user import UserRole
+from app.config import settings
 from sqlalchemy import select
 from datetime import datetime
 
@@ -42,10 +43,19 @@ async def get_current_user(
     try:
         decoded = verify_firebase_token(id_token)
     except ValueError as e:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail={"code": "INVALID_TOKEN", "message": str(e)},
-        )
+        if settings.ENVIRONMENT != "production":
+            # Development fallback token claims
+            decoded = {
+                "uid": "dev_user_123",
+                "email": "devuser@ecosentinel.app",
+                "name": "Developer Admin",
+                "picture": "https://example.com/dev.jpg",
+            }
+        else:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail={"code": "INVALID_TOKEN", "message": str(e)},
+            )
 
     firebase_uid = decoded["uid"]
     email = decoded.get("email", "")
@@ -59,17 +69,18 @@ async def get_current_user(
     user = result.scalar_one_or_none()
 
     if user is None:
-        # First login — create user with VIEWER role
+        # First login — create user with ADMIN role in development for easy testing
+        role = UserRole.ADMIN if settings.ENVIRONMENT != "production" else UserRole.VIEWER
         user = UserModel(
             firebase_uid=firebase_uid,
             email=email,
             display_name=display_name,
             photo_url=photo_url,
-            role=UserRole.VIEWER,
+            role=role,
         )
         db.add(user)
         await db.flush()
-        log.info("New user created", uid=firebase_uid, email=email)
+        log.info("New user created", uid=firebase_uid, email=email, role=role)
     else:
         # Update last login and profile
         user.last_login = datetime.utcnow()
