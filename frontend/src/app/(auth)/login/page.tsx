@@ -139,7 +139,7 @@ export default function LoginPage() {
           Act.
         </h1>
         <p style={{ fontSize: "1.0625rem", color: "rgba(134,239,172,0.65)", lineHeight: 1.7, maxWidth: 420, marginBottom: "3rem" }}>
-          Enterprise carbon footprint tracking powered by AI. Accelerate your organization's journey to net zero with real-time data and intelligent insights.
+          Enterprise carbon footprint tracking powered by AI. Accelerate your organization&apos;s journey to net zero with real-time data and intelligent insights.
         </p>
 
         {/* Stats row */}

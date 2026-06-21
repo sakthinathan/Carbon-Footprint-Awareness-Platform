@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+
 import { useAQI, useWeather, useGridCarbon, useGeolocation } from "@/hooks/useEnvironment";
 
 // ── AQI Gauge ──────────────────────────────────────────────────────────────

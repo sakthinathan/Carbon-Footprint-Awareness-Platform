@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { useAnalyticsBenchmarks, useAnalyticsScopeBreakdown } from "@/hooks/useEmissions";
-import { formatCO2e } from "@/lib/utils";
+import { useAnalyticsBenchmarks } from "@/hooks/useEmissions";
+
 import {
   RadarChart, PolarGrid, PolarAngleAxis, Radar,
   ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Cell,
@@ -29,7 +29,7 @@ export default function BenchmarksPage() {
   const [employees, setEmployees] = useState(100);
 
   const { data: bench } = useAnalyticsBenchmarks(industry, employees);
-  const { data: scopes } = useAnalyticsScopeBreakdown();
+
 
   // Radar chart — compare org vs industry across categories
   const radarData = [

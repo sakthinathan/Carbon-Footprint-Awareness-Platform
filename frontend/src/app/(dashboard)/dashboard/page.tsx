@@ -92,7 +92,7 @@ export default function DashboardPage() {
             {greeting()}, {user?.displayName?.split(" ")[0]} 👋
           </h1>
           <p style={{ fontSize: "0.875rem", color: "rgba(134,239,172,0.45)", marginTop: 3 }}>
-            Here's your carbon intelligence overview — {new Date().toLocaleDateString("en-IN", { weekday: "long", month: "long", day: "numeric" })}
+            Here&apos;s your carbon intelligence overview — {new Date().toLocaleDateString("en-IN", { weekday: "long", month: "long", day: "numeric" })}
           </p>
         </div>
         <div style={{ display: "flex", gap: 10 }}>

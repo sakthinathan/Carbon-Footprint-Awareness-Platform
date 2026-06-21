@@ -5,7 +5,7 @@
 //   • ElectricityMaps — https://api.electricitymap.org — free observer key
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const WAQI_TOKEN = process.env.NEXT_PUBLIC_WAQI_TOKEN || "demo";
 const ELECTRICITY_MAPS_TOKEN = process.env.NEXT_PUBLIC_ELECTRICITY_MAPS_TOKEN || "";

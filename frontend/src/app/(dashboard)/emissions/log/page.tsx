@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useCreateEmission } from "@/hooks/useEmissions";
-import { EmissionScope, EmissionCategory, EmissionUnit, CATEGORY_LABELS, SCOPE_LABELS } from "@/types/emission.types";
+import { EmissionScope, EmissionCategory, EmissionUnit, CATEGORY_LABELS } from "@/types/emission.types";
 import { useRouter } from "next/navigation";
 import { Save, ArrowLeft, Info } from "lucide-react";
 import Link from "next/link";

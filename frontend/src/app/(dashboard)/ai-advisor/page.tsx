@@ -1,6 +1,6 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
-import { Bot, Send, User, Sparkles, RefreshCw } from "lucide-react";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { Bot, Send, Sparkles, RefreshCw } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { getIdToken } from "@/infrastructure/firebase/auth";
 
@@ -39,22 +39,25 @@ export default function AiAdvisorPage() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const sendMessage = async (text: string) => {
+  const sendMessage = useCallback(async (text: string) => {
     if (!text.trim() || streaming) return;
     setInput("");
 
+    const currentTimestamp = new Date();
+    const userMsgId = currentTimestamp.getTime().toString();
+    const aiMsgId = (currentTimestamp.getTime() + 1).toString();
+
     const userMsg: Message = {
-      id: Date.now().toString(),
+      id: userMsgId,
       role: "user",
       content: text,
-      timestamp: new Date(),
+      timestamp: currentTimestamp,
     };
-    const aiMsgId = (Date.now() + 1).toString();
     const aiMsg: Message = {
       id: aiMsgId,
       role: "ai",
       content: "",
-      timestamp: new Date(),
+      timestamp: currentTimestamp,
     };
 
     setMessages((prev) => [...prev, userMsg, aiMsg]);
@@ -80,7 +83,6 @@ export default function AiAdvisorPage() {
 
       if (!reader) throw new Error("No reader");
 
-      let accumulated = "";
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
@@ -93,9 +95,8 @@ export default function AiAdvisorPage() {
             try {
               const parsed = JSON.parse(line.slice(6));
               if (parsed.chunk) {
-                accumulated += parsed.chunk;
                 setMessages((prev) =>
-                  prev.map((m) => (m.id === aiMsgId ? { ...m, content: accumulated } : m))
+                  prev.map((m) => (m.id === aiMsgId ? { ...m, content: m.content + parsed.chunk } : m))
                 );
               }
               if (parsed.done) break;
@@ -103,7 +104,7 @@ export default function AiAdvisorPage() {
           }
         }
       }
-    } catch (err) {
+    } catch {
       setMessages((prev) =>
         prev.map((m) =>
           m.id === aiMsgId
@@ -114,7 +115,7 @@ export default function AiAdvisorPage() {
     } finally {
       setStreaming(false);
     }
-  };
+  }, [messages, streaming]);
 
   const renderMarkdown = (text: string) => {
     return text
