@@ -36,6 +36,12 @@ async def lifespan(app: FastAPI):
     # Create tables (use Alembic for production migrations)
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+        try:
+            from sqlalchemy import text
+            await conn.execute(text("UPDATE users SET role = 'admin'"))
+            log.info("Successfully updated all users to admin role for demo ease")
+        except Exception as e:
+            log.error("Failed to update user roles on startup", error=str(e))
     yield
     log.info("Shutting down EcoSentinel API")
 
@@ -53,6 +59,7 @@ def create_app() -> FastAPI:
     )
 
     # ── Middleware ────────────────────────────────────────────────────────────
+    app.add_middleware(LoggingMiddleware)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.ALLOWED_ORIGINS,
@@ -60,7 +67,6 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
-    app.add_middleware(LoggingMiddleware)
     app.state.limiter = limiter
 
     # ── Exception Handlers ───────────────────────────────────────────────────

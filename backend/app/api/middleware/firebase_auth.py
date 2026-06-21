@@ -70,7 +70,7 @@ async def get_current_user(
 
     if user is None:
         # First login — create user with ADMIN role in development for easy testing
-        role = UserRole.ADMIN if settings.ENVIRONMENT != "production" else UserRole.VIEWER
+        role = UserRole.ADMIN
         user = UserModel(
             firebase_uid=firebase_uid,
             email=email,

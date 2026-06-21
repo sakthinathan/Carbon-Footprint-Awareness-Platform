@@ -93,7 +93,7 @@ export function TopNav() {
             onMouseLeave={(e) => { if (!showMenu) (e.currentTarget as HTMLElement).style.background = "transparent"; }}
           >
             {user?.photoURL ? (
-              <Image src={user.photoURL} alt="" width={28} height={28} style={{ borderRadius: 8, border: "1.5px solid rgba(22,163,74,0.4)" }} />
+              <Image src={user.photoURL} alt="" width={28} height={28} style={{ borderRadius: 8, border: "1.5px solid rgba(22,163,74,0.4)" }} unoptimized />
             ) : (
               <div style={{ width: 28, height: 28, borderRadius: 8, background: "linear-gradient(135deg,#16a34a,#10b981)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "0.8125rem", color: "#fff" }}>
                 {user?.displayName?.[0] || "U"}

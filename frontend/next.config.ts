@@ -7,7 +7,7 @@ const CSP = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data: blob: https://*.googleusercontent.com https://lh3.googleusercontent.com",
-  "connect-src 'self' https://*.firebaseio.com https://*.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.waqi.info https://api.open-meteo.com https://api.electricitymap.org wss://*.firebaseio.com http://localhost:* http://127.0.0.1:*",
+  "connect-src 'self' https://*.firebaseio.com https://*.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.waqi.info https://api.open-meteo.com https://api.electricitymap.org wss://*.firebaseio.com http://localhost:* http://127.0.0.1:* https://*.run.app",
   "frame-src 'self' https://*.firebaseapp.com https://accounts.google.com",
   "object-src 'none'",
   "base-uri 'self'",

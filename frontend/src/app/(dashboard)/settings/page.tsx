@@ -63,7 +63,7 @@ export default function SettingsPage() {
               {/* Avatar */}
               <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
                 {user?.photoURL ? (
-                  <Image src={user.photoURL} alt="" width={64} height={64} style={{ borderRadius: 16, border: "2px solid rgba(22,163,74,0.3)" }} />
+                  <Image src={user.photoURL} alt="" width={64} height={64} style={{ borderRadius: 16, border: "2px solid rgba(22,163,74,0.3)" }} unoptimized />
                 ) : (
                   <div style={{ width: 64, height: 64, borderRadius: 16, background: "linear-gradient(135deg,#16a34a,#10b981)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.5rem", fontWeight: 800, color: "#fff" }}>
                     {user?.displayName?.[0] || "U"}

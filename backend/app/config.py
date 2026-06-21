@@ -13,7 +13,10 @@ class Settings(BaseSettings):
     # Server
     HOST: str = "0.0.0.0"
     PORT: int = 8000
-    ALLOWED_ORIGINS: list[str] = ["http://localhost:3000"]
+    ALLOWED_ORIGINS: list[str] = [
+        "http://localhost:3000",
+        "https://ecosentinel-frontend-728645350771.asia-south1.run.app"
+    ]
 
     # Database
     DATABASE_URL: str

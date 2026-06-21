@@ -35,6 +35,20 @@ graph TD
 
 ---
 
+## ☁️ Google Cloud Platform (GCP) Deployment
+
+EcoSentinel is deployed as a fully managed serverless application on Google Cloud Platform:
+
+- 🖥️ **Live Frontend (Next.js)**: [https://ecosentinel-frontend-728645350771.asia-south1.run.app](https://ecosentinel-frontend-728645350771.asia-south1.run.app)
+- 🚀 **Live Backend API (FastAPI)**: [https://ecosentinel-backend-728645350771.asia-south1.run.app](https://ecosentinel-backend-728645350771.asia-south1.run.app)
+- 🗄️ **Database**: Google Cloud SQL (PostgreSQL 15, `db-f1-micro` in `asia-south1`)
+- 🔒 **Secrets & Keys**: Managed via Google Secret Manager (`DATABASE_URL`, `GEMINI_API_KEY`, `FIREBASE_SERVICE_ACCOUNT_KEY`)
+- 🛠️ **Build Pipeline**: Docker images built and compiled via GCP Cloud Build and hosted in Artifact Registry (`ecosentinel-repo`)
+
+For step-by-step instructions on deploying or redeploying to GCP, see [deploy_gcp.md](file:///Users/sakthi/Carbon%20Footprint%20Awareness%20Platform/deploy_gcp.md).
+
+---
+
 ## ⚡ Quick Start
 
 ### Prerequisites
